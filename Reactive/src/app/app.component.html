@@ -1,19 +1,21 @@
 <div class="container-fluid">
     <h2 style="text-align:center"> Registration Form </h2>
-    <form [formGroup]="registrationform">
+    <form [formGroup]="registrationform" >
         <div class="form-group">
-            <label>UserName</label>
-            <input formControlName="username" type="text" class="form-control">
+            <label>UserName</label>         
+            <input  [class.is-invalid]="registrationform.get('username')?.invalid &&  registrationform.get('username')?.touched"   formControlName="username" type="text" class="form-control">
+          
+            <small [class.d-none]="registrationform.get('username')?.valid ||  registrationform.get('username')?.untouched" class="text-danger"> username is required</small>
         </div>
         <br>
         <div class="form-group">
             <label>Password</label>
-            <input formControlName="password" type="password" class="form-control">
+            <input  [class.is-invalid]="registrationform.get('password')?.invalid &&  registrationform.get('password')?.touched" formControlName="password" type="password" class="form-control">
         </div>
         <br>
         <div class="form-group">
             <label>Confirm Password</label>
-            <input  formControlName="confirmpassword" type="password" class="form-control">
+            <input   [class.is-invalid]="registrationform.get('confirmpassword')?.invalid &&  registrationform.get('confirmpassword')?.touched"  formControlName="confirmpassword" type="password" class="form-control">
         </div>
         <br>
         <button  class="btn btn-primary" type="submit">Submit</button>
