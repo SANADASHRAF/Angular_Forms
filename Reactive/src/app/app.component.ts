@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 // import {  FormControl, FormGroup } from '@angular/forms';
 import { FormBuilder , Validators} from '@angular/forms';
+import { forbidenusername } from './shared/user.name.validators';
 
 @Component({
   selector: 'app-root',
@@ -9,6 +10,9 @@ import { FormBuilder , Validators} from '@angular/forms';
 })
 export class AppComponent {
   title = 'Reactive';
+  get  username(){
+    return this .registrationform.get('username');
+  }
 constructor(private fb:FormBuilder){}
 
 
@@ -23,7 +27,7 @@ constructor(private fb:FormBuilder){}
 
   //MODEL using formbuilder 
   registrationform=this.fb.group({
-    username:['',[Validators.required,Validators.minLength(3)]],
+    username:['',[Validators.required,Validators.minLength(3),forbidenusername]],
     password:['',Validators.required],
     confirmpassword:['',Validators.required],
 

@@ -4,8 +4,15 @@
         <div class="form-group">
             <label>UserName</label>         
             <input  [class.is-invalid]="registrationform.get('username')?.invalid &&  registrationform.get('username')?.touched"   formControlName="username" type="text" class="form-control">
-          
-            <small [class.d-none]="registrationform.get('username')?.valid ||  registrationform.get('username')?.untouched" class="text-danger"> username is required</small>
+          <!-- if i have more than validation -->
+
+          <div *ngIf="username?.invalid &&  username?.touched">
+            <small *ngIf="username?.errors?.['required']" class="text-danger"> username is required</small>
+            <small *ngIf="username?.errors?.['minlength']" class="text-danger"> username must greater than 3 character</small>          
+            <small *ngIf="username?.errors?.['forbiddenName']" class="text-danger">{{username?.errors?.['forbiddenName']?.value}}  forbidden</small> 
+           </div> 
+           
+           
         </div>
         <br>
         <div class="form-group">
