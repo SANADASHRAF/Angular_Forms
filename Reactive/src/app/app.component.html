@@ -17,14 +17,15 @@
         <br>
         <div class="form-group">
             <label>Password</label>
-            <input  [class.is-invalid]="registrationform.get('password')?.invalid &&  registrationform.get('password')?.touched" formControlName="password" type="password" class="form-control">
+            <input   formControlName="password" type="password" class="form-control">
         </div>
         <br>
         <div class="form-group">
             <label>Confirm Password</label>
-            <input   [class.is-invalid]="registrationform.get('confirmpassword')?.invalid &&  registrationform.get('confirmpassword')?.touched"  formControlName="confirmpassword" type="password" class="form-control">
+            <input   [class.is-invalid]="registrationform.errors?.['misMatch']"  formControlName="confirmpassword" type="password" class="form-control">
+            <small class="text-danger" *ngIf="registrationform.errors?.['misMatch'] "> password not match</small>
         </div>
-        <br>
+        <br> 
         <button  class="btn btn-primary" type="submit">Submit</button>
         <button (click)="onsubmit()" class="btn btn-secondary nl-2" type="submit">Load Api Data</button>
     </form>
